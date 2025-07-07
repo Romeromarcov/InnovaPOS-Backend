@@ -1,0 +1,64 @@
+# .gitignore
+# Ignorar archivos y directorios comunes de Django y Python
+
+# Archivos de Python
+*.pyc
+__pycache__/
+.Python/
+build/
+develop-eggs/
+dist/
+eggs/
+.egg-info/
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.idea/ # Directorio de PyCharm/IntelliJ
+.vscode/ # Directorio de VS Code (opcional, si no quieres compartir configuraciones)
+*.log
+*.pot
+*.mo
+*.sqlite3 # Base de datos SQLite (si la usaras localmente sin Docker)
+
+# Archivos de Docker
+.dockerignore # Aunque es un archivo de configuración, a veces se ignora si no es la raíz
+docker-compose.override.yml # Si usas overrides locales
+*.env # ¡IMPORTANTE! Archivos .env con credenciales sensibles
+*.pem # Claves privadas
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos estáticos y de medios generados por Django
+/staticfiles/
+/media/
+
+# Archivos de migraciones (excepto el __init__.py)
+# Si no quieres rastrear los archivos de migración de la aplicación
+# inventario/migrations/[0-9]*.py
+# inventario/migrations/__pycache__/
+
+# Directorios de cobertura de pruebas
+.coverage
+.coverage.*
+htmlcov/
+
+# Archivos de base de datos de PostgreSQL (si no usas Docker para la persistencia)
+# pg_data/
+# pgdata/
+
+# Archivos de Node/NPM (si tienes un frontend JS/TS)
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.pnp/
+.pnp.js
+
+# Archivos de registro de depuración
+debug.log

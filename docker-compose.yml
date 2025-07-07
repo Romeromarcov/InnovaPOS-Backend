@@ -1,0 +1,39 @@
+services:
+  web:
+    container_name: django_app
+    build: .
+    command: ["/app/entrypoint.sh", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+       - ./.env.dev
+    #environment: # Deja esto comentado, ya usas env_file
+    #   - DB_USER=${DB_USER}
+    #   - DB_PASSWORD=${DB_PASSWORD}
+    #   - DB_NAME=${DB_NAME}
+    #   - DB_HOST=${DB_HOST}
+    #   - DB_PORT=${DB_PORT}
+    depends_on:
+      - postgresql
+    restart: on-failure
+
+  postgresql:
+    container_name: postgres_db
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.dev
+    #healthcheck:
+      #test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}"]
+      #interval: 10s
+      #retries: 5
+    restart: on-failure
+
+volumes:
+  postgres_data:
+
